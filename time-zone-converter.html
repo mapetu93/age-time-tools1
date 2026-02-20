@@ -3,9 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Time Zone Converter — Convert Time Between Time Zones | AgeTimeTools</title>
-  <meta name="description" content="Time Zone Converter: convert a date and time from one time zone to another. Instant results, mobile-friendly." />
+
+  <title>Time Zone Converter – Convert Time Between Time Zones | AgeTimeTools</title>
+  <meta name="description" content="Free Time Zone Converter: convert a date and time from one time zone to another. Includes daylight saving time (DST). Fast and mobile-friendly." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="canonical" href="https://age-time-tools.pages.dev/time-zone-converter.html" />
   <link rel="stylesheet" href="/css/style.css" />
+
+  <meta property="og:title" content="Time Zone Converter – Instant Conversion" />
+  <meta property="og:description" content="Convert date and time between global time zones (DST included)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://age-time-tools.pages.dev/time-zone-converter.html" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Time Zone Converter" />
+  <meta name="twitter:description" content="Convert time across cities and countries instantly." />
 </head>
 <body>
   <header class="site-header">
@@ -31,7 +44,7 @@
         <div class="tool-card-lg">
           <div class="form-grid">
             <label class="field">
-              <span>Date & time</span>
+              <span>Date &amp; time</span>
               <input id="tz_dt" type="datetime-local" />
             </label>
             <label class="field">
@@ -116,5 +129,42 @@
   </footer>
 
   <script src="/js/main.js" defer></script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Time Zone Converter",
+    "url": "https://age-time-tools.pages.dev/time-zone-converter.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "Convert a date and time between global time zones (DST included)."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does this include daylight saving time (DST)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The conversion uses IANA time zones and accounts for DST."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I convert any date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — pick any date/time and convert it between zones."
+        }
+      }
+    ]
+  }
+  </script>
 </body>
 </html>
