@@ -15,6 +15,19 @@
   --shadow: 0 12px 28px rgba(17,24,39,.06);
   --radius: 16px;
 }
+/*clock time */
+.current-time-box{
+  margin-top:16px;
+  padding:12px 14px;
+  background:#ffffff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  font-size:16px;
+  display:inline-block;
+}
+.current-time-box strong{
+  font-weight:600;
+}
 
 /* Base */
 *{ box-sizing:border-box; }
@@ -307,3 +320,4 @@ input[type="date"]:focus{
   .hero-card{ padding: 18px; }
   .tool-card-lg{ padding: 18px; }
 }
+
