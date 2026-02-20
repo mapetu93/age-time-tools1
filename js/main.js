@@ -9,17 +9,6 @@ function clampDateInputValue(el, value){
   el.value = value;
 }
 
-function addMonths(date, months){
-  // Safe month add: keeps day in range
-  const d = new Date(date);
-  const day = d.getDate();
-  d.setDate(1);
-  d.setMonth(d.getMonth() + months);
-  const maxDay = new Date(d.getFullYear(), d.getMonth()+1, 0).getDate();
-  d.setDate(Math.min(day, maxDay));
-  return d;
-}
-
 function diffYMD(from, to){
   // from <= to assumed
   let years = to.getFullYear() - from.getFullYear();
@@ -27,7 +16,6 @@ function diffYMD(from, to){
   let days = to.getDate() - from.getDate();
 
   if (days < 0){
-    // borrow days from previous month
     const prevMonth = new Date(to.getFullYear(), to.getMonth(), 0);
     days += prevMonth.getDate();
     months -= 1;
@@ -130,14 +118,135 @@ function setupAgeCalculatorPage(){
     out.innerHTML = '<div class="result-empty">Enter dates to see your result.</div>';
   });
 
-  // Optional: auto-run if both dates already filled
   [dob, asof].forEach(el => el.addEventListener("change", () => {
-    // Keep it gentle: only update if both are present
     if (dob.value && asof.value) run();
+  }));
+}
+
+function setupAgeInWeeksPage(){
+  const shell = document.querySelector('[data-tool="age-in-weeks"]');
+  if (!shell) return;
+
+  const dob = document.getElementById("w_dob");
+  const asof = document.getElementById("w_asof");
+  const calc = document.getElementById("w_calc");
+  const reset = document.getElementById("w_reset");
+  const out = document.getElementById("w_result");
+
+  const today = new Date();
+  clampDateInputValue(asof, toISODate(today));
+
+  function run(){
+    if (!dob.value || !asof.value){
+      out.innerHTML = '<div class="result-empty">Enter dates to see your result.</div>';
+      return;
+    }
+    const from = new Date(dob.value + "T00:00:00");
+    const to = new Date(asof.value + "T00:00:00");
+    if (to < from){
+      out.innerHTML = '<div class="result-empty">As of date must be after date of birth.</div>';
+      return;
+    }
+
+    const totalDays = daysBetween(from, to);
+    const weeks = Math.floor(totalDays / 7);
+    const remainingDays = totalDays % 7;
+    const d = diffYMD(from, to);
+
+    out.innerHTML = `
+      <div><strong>Result:</strong> ${weeks} weeks, ${remainingDays} days</div>
+      <div class="kpi">
+        <div class="box">
+          <div class="label">Total weeks</div>
+          <div class="value">${weeks}</div>
+        </div>
+        <div class="box">
+          <div class="label">Total days</div>
+          <div class="value">${totalDays}</div>
+        </div>
+        <div class="box">
+          <div class="label">Exact age</div>
+          <div class="value">${d.years}y ${d.months}m</div>
+        </div>
+      </div>
+    `;
+  }
+
+  calc.addEventListener("click", run);
+  reset.addEventListener("click", () => {
+    dob.value = "";
+    clampDateInputValue(asof, toISODate(today));
+    out.innerHTML = '<div class="result-empty">Enter dates to see your result.</div>';
+  });
+
+  [dob, asof].forEach(el => el.addEventListener("change", () => {
+    if (dob.value && asof.value) run();
+  }));
+}
+
+function setupAgeDifferencePage(){
+  const shell = document.querySelector('[data-tool="age-difference"]');
+  if (!shell) return;
+
+  const a = document.getElementById("d_a");
+  const b = document.getElementById("d_b");
+  const calc = document.getElementById("d_calc");
+  const reset = document.getElementById("d_reset");
+  const out = document.getElementById("d_result");
+
+  function run(){
+    if (!a.value || !b.value){
+      out.innerHTML = '<div class="result-empty">Enter both dates to see the difference.</div>';
+      return;
+    }
+    const d1 = new Date(a.value + "T00:00:00");
+    const d2 = new Date(b.value + "T00:00:00");
+
+    const older = d1 <= d2 ? d1 : d2;
+    const younger = d1 <= d2 ? d2 : d1;
+
+    const gap = diffYMD(older, younger);
+    const totalDays = daysBetween(older, younger);
+    const totalWeeks = Math.floor(totalDays / 7);
+
+    const who = (d1.getTime() === d2.getTime())
+      ? "Same date"
+      : (older.getTime() === d1.getTime() ? "Person A is older" : "Person B is older");
+
+    out.innerHTML = `
+      <div><strong>${who}:</strong> ${gap.years} years, ${gap.months} months, ${gap.days} days</div>
+      <div class="kpi">
+        <div class="box">
+          <div class="label">Years</div>
+          <div class="value">${gap.years}</div>
+        </div>
+        <div class="box">
+          <div class="label">Total days</div>
+          <div class="value">${totalDays}</div>
+        </div>
+        <div class="box">
+          <div class="label">Total weeks</div>
+          <div class="value">${totalWeeks}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  calc.addEventListener("click", run);
+  reset.addEventListener("click", () => {
+    a.value = "";
+    b.value = "";
+    out.innerHTML = '<div class="result-empty">Enter both dates to see the difference.</div>';
+  });
+
+  [a, b].forEach(el => el.addEventListener("change", () => {
+    if (a.value && b.value) run();
   }));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   setupHomepageQuickCalc();
   setupAgeCalculatorPage();
+  setupAgeInWeeksPage();
+  setupAgeDifferencePage();
 });
