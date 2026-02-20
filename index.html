@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AgeTimeTools — Fast Age & Time Calculators</title>
+  <meta name="description" content="Fast, mobile-friendly age and time calculators. Try the Age Calculator, Age in Weeks, Age Difference and more." />
+  <link rel="canonical" href="https://agetimeTools.com/" />
+
+  <meta property="og:title" content="AgeTimeTools — Fast Age & Time Calculators" />
+  <meta property="og:description" content="Fast, mobile-friendly age and time calculators." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/index.html" aria-label="AgeTimeTools home">
+      <span class="brand-mark" aria-hidden="true">⏱️</span>
+      <span class="brand-name">AgeTimeTools</span>
+    </a>
+
+    <nav class="nav">
+      <a href="/age-calculator.html" class="nav-link">Age Calculator</a>
+      <a href="#tools" class="nav-link">All tools</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-copy">
+        <h1>Age & Time Tools that are fast and simple.</h1>
+        <p class="lead">
+          Mobile-first calculators with instant results. Start with our Age Calculator.
+        </p>
+        <div class="cta-row">
+          <a class="btn" href="/age-calculator.html">Open Age Calculator</a>
+          <a class="btn btn-ghost" href="#tools">Browse tools</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h2 class="card-title">Quick Age Calculator</h2>
+        <p class="card-subtitle">A preview — full version on the tool page.</p>
+        <div class="form-grid">
+          <label class="field">
+            <span>Date of birth</span>
+            <input id="hp_dob" type="date" inputmode="numeric" />
+          </label>
+          <label class="field">
+            <span>As of date</span>
+            <input id="hp_asof" type="date" inputmode="numeric" />
+          </label>
+        </div>
+        <button class="btn full" id="hp_calc">Calculate</button>
+        <div class="result" id="hp_result" aria-live="polite"></div>
+        <p class="tiny-note">Tip: For full breakdown (years/months/days), use the tool page.</p>
+      </div>
+    </section>
+
+    <section id="tools" class="section">
+      <div class="section-head">
+        <h2>Tools</h2>
+        <p class="muted">We’ll expand this hub to 10+ calculators.</p>
+      </div>
+
+      <div class="grid">
+        <a class="tool-card" href="/age-calculator.html">
+          <div class="tool-icon" aria-hidden="true">🎂</div>
+          <div>
+            <div class="tool-title">Age Calculator</div>
+            <div class="tool-desc">Calculate exact age from date of birth.</div>
+          </div>
+        </a>
+
+        <a class="tool-card disabled" href="#" aria-disabled="true" title="Coming soon">
+          <div class="tool-icon" aria-hidden="true">🗓️</div>
+          <div>
+            <div class="tool-title">Age in Weeks</div>
+            <div class="tool-desc">Coming soon</div>
+          </div>
+        </a>
+
+        <a class="tool-card disabled" href="#" aria-disabled="true" title="Coming soon">
+          <div class="tool-icon" aria-hidden="true">➖</div>
+          <div>
+            <div class="tool-title">Age Difference</div>
+            <div class="tool-desc">Coming soon</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Is AgeTimeTools free to use?</summary>
+        <p>Yes. The tools are free and designed for quick answers.</p>
+      </details>
+      <details>
+        <summary>Are results accurate?</summary>
+        <p>We calculate using calendar dates (including leap years) and show a clear breakdown.</p>
+      </details>
+      <details>
+        <summary>Will you add more tools?</summary>
+        <p>Yes — age and time utilities are added continuously.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">AgeTimeTools</div>
+        <div class="muted">Fast calculators for everyday questions.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/age-calculator.html">Age Calculator</a>
+        <a href="/index.html#tools">All Tools</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
