@@ -3,9 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Time Difference Between Cities — Hours & Minutes | AgeTimeTools</title>
-  <meta name="description" content="Time difference calculator: compare two time zones and see the difference in hours and minutes, plus current local time in each zone." />
+
+  <title>Time Difference Between Cities – Hours & Minutes | AgeTimeTools</title>
+  <meta name="description" content="Calculate the time difference between two cities or time zones. See the offset in hours and minutes plus the current local time in each zone (DST included)." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="canonical" href="https://age-time-tools.pages.dev/time-difference-calculator.html" />
   <link rel="stylesheet" href="/css/style.css" />
+
+  <meta property="og:title" content="Time Difference Between Cities" />
+  <meta property="og:description" content="Compare two time zones and see the difference instantly (DST included)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://age-time-tools.pages.dev/time-difference-calculator.html" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Time Difference Between Cities" />
+  <meta name="twitter:description" content="Instant time zone difference calculator." />
 </head>
 <body>
   <header class="site-header">
@@ -97,5 +110,42 @@
   </footer>
 
   <script src="/js/main.js" defer></script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Time Difference Between Cities Calculator",
+    "url": "https://age-time-tools.pages.dev/time-difference-calculator.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "Calculate the time difference between two time zones and see the current local time in each zone."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does the time difference change?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — daylight saving time can change offsets during the year."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this accurate for right now?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We calculate offsets for the current moment using time zone rules."
+        }
+      }
+    ]
+  }
+  </script>
 </body>
 </html>
