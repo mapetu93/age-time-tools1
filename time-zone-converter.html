@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Time Zone Converter — Convert Time Between Time Zones | AgeTimeTools</title>
+  <meta name="description" content="Time Zone Converter: convert a date and time from one time zone to another. Instant results, mobile-friendly." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/index.html" aria-label="AgeTimeTools home">
+      <span class="brand-mark" aria-hidden="true">⏱️</span>
+      <span class="brand-name">AgeTimeTools</span>
+    </a>
+    <nav class="nav">
+      <a href="/time-zone-converter.html" class="nav-link active">Time Zone Converter</a>
+      <a href="/time-difference-calculator.html" class="nav-link">Time Difference</a>
+      <a href="/index.html#tools" class="nav-link">All tools</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>Time Zone Converter</h1>
+      <p class="lead">Convert a date and time from one time zone to another.</p>
+    </div>
+
+    <section class="tool-shell" data-tool="time-zone-converter">
+      <div class="tool-card-wrap">
+        <div class="tool-card-lg">
+          <div class="form-grid">
+            <label class="field">
+              <span>Date & time</span>
+              <input id="tz_dt" type="datetime-local" />
+            </label>
+            <label class="field">
+              <span>From time zone</span>
+              <select id="tz_from"></select>
+            </label>
+          </div>
+
+          <div class="form-grid" style="margin-top:16px;">
+            <label class="field">
+              <span>To time zone</span>
+              <select id="tz_to"></select>
+            </label>
+            <label class="field">
+              <span>Quick pick</span>
+              <select id="tz_quick">
+                <option value="">— Select —</option>
+                <option value="Europe/London|America/New_York">London → New York</option>
+                <option value="America/New_York|Europe/London">New York → London</option>
+                <option value="Europe/Bucharest|America/New_York">Bucharest → New York</option>
+                <option value="America/Los_Angeles|Europe/Bucharest">Los Angeles → Bucharest</option>
+                <option value="Asia/Tokyo|Europe/London">Tokyo → London</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" id="tz_calc">Convert</button>
+            <button class="btn btn-ghost" id="tz_now" type="button">Use now</button>
+          </div>
+
+          <div class="result-panel" id="tz_result" aria-live="polite">
+            <div class="result-empty">Choose time zones and a date/time to convert.</div>
+          </div>
+
+          <p class="tiny-note">Note: conversion uses your browser’s time zone database (DST included).</p>
+        </div>
+
+        <aside class="tool-side">
+          <div class="side-box">
+            <div class="side-title">Related tools</div>
+            <a class="side-link" href="/time-difference-calculator.html">Time Difference Between Cities</a>
+          </div>
+
+          <div class="side-box">
+            <div class="side-title">Popular use cases</div>
+            <ul class="bullets">
+              <li>Meeting time across countries</li>
+              <li>Travel planning</li>
+              <li>Remote work schedules</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <section class="section faq">
+        <h2>FAQ</h2>
+        <details>
+          <summary>Does this include daylight saving time (DST)?</summary>
+          <p>Yes. The conversion uses IANA time zones and accounts for DST.</p>
+        </details>
+        <details>
+          <summary>Can I convert any date?</summary>
+          <p>Yes — pick any date/time and convert it between zones.</p>
+        </details>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">AgeTimeTools</div>
+        <div class="muted">Fast calculators for everyday questions.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/time-zone-converter.html">Time Zone Converter</a>
+        <a href="/time-difference-calculator.html">Time Difference</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

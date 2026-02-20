@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>How Old Am I? — Exact Age Today | AgeTimeTools</title>
+  <meta name="description" content="How old am I today? Enter your date of birth to get your exact age in years, months and days — plus total days and weeks." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/index.html" aria-label="AgeTimeTools home">
+      <span class="brand-mark" aria-hidden="true">⏱️</span>
+      <span class="brand-name">AgeTimeTools</span>
+    </a>
+    <nav class="nav">
+      <a href="/how-old-am-i.html" class="nav-link active">How Old Am I</a>
+      <a href="/age-calculator.html" class="nav-link">Age Calculator</a>
+      <a href="/index.html#tools" class="nav-link">All tools</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <h1>How Old Am I?</h1>
+      <p class="lead">Instantly calculate your exact age today.</p>
+    </div>
+
+    <section class="tool-shell" data-tool="how-old-am-i">
+      <div class="tool-card-wrap">
+        <div class="tool-card-lg">
+          <div class="form-grid">
+            <label class="field">
+              <span>Your date of birth</span>
+              <input id="hoi_dob" type="date" inputmode="numeric" />
+            </label>
+            <label class="field">
+              <span>Today</span>
+              <input id="hoi_today" type="date" inputmode="numeric" disabled />
+            </label>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" id="hoi_calc">Calculate</button>
+            <button class="btn btn-ghost" id="hoi_reset" type="button">Reset</button>
+          </div>
+
+          <div class="result-panel" id="hoi_result" aria-live="polite">
+            <div class="result-empty">Enter your birth date to see your result.</div>
+          </div>
+
+          <p class="tiny-note">Tip: for age on any custom date, use the full <a href="/age-calculator.html">Age Calculator</a>.</p>
+        </div>
+
+        <aside class="tool-side">
+          <div class="side-box">
+            <div class="side-title">Related tools</div>
+            <a class="side-link" href="/age-calculator.html">Age Calculator</a>
+            <a class="side-link" href="/age-in-weeks.html">Age in Weeks</a>
+            <a class="side-link" href="/age-difference-calculator.html">Age Difference</a>
+          </div>
+
+          <div class="side-box">
+            <div class="side-title">Popular questions</div>
+            <ul class="bullets">
+              <li>How old am I in days?</li>
+              <li>How many weeks old am I?</li>
+              <li>What is my exact age today?</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+
+      <section class="section faq">
+        <h2>FAQ</h2>
+        <details>
+          <summary>Is “How old am I” accurate?</summary>
+          <p>Yes. We use calendar math and include leap years.</p>
+        </details>
+        <details>
+          <summary>Do you store my birth date?</summary>
+          <p>No. Everything runs locally in your browser.</p>
+        </details>
+        <details>
+          <summary>Can I calculate my age for a future date?</summary>
+          <p>Yes — use the <a href="/age-calculator.html">Age Calculator</a> page.</p>
+        </details>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">AgeTimeTools</div>
+        <div class="muted">Fast calculators for everyday questions.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/how-old-am-i.html">How Old Am I</a>
+        <a href="/age-calculator.html">Age Calculator</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
