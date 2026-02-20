@@ -538,6 +538,27 @@ function setupTimeDifference(){
   run();
 }
 
+// -------clock
+function setupLiveTime(){
+  const timeEl = document.getElementById("live_time");
+  const gmtEl = document.getElementById("live_gmt");
+  if(!timeEl) return;
+
+  function update(){
+    const now = new Date();
+    timeEl.textContent = now.toLocaleTimeString();
+
+    const offsetMin = -now.getTimezoneOffset();
+    const sign = offsetMin >= 0 ? "+" : "-";
+    const hours = Math.floor(Math.abs(offsetMin)/60);
+    const minutes = Math.abs(offsetMin)%60;
+    gmtEl.textContent = `(GMT${sign}${hours}:${String(minutes).padStart(2,"0")})`;
+  }
+
+  update();
+  setInterval(update, 1000);
+}
+
 // ---------- Init ----------
 document.addEventListener("DOMContentLoaded", () => {
   setupHomepageQuickCalc();
@@ -547,4 +568,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupHowOldAmI();
   setupTimeZoneConverter();
   setupTimeDifference();
+  setupLiveTime();
 });
+
