@@ -3,9 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>How Old Am I? — Exact Age Today | AgeTimeTools</title>
-  <meta name="description" content="How old am I today? Enter your date of birth to get your exact age in years, months and days — plus total days and weeks." />
+
+  <title>How Old Am I? – Exact Age Today Calculator | AgeTimeTools</title>
+  <meta name="description" content="How old am I today? Enter your birth date to see your exact age in years, months, days, total weeks and total days. Free and mobile-friendly." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="canonical" href="https://age-time-tools.pages.dev/how-old-am-i.html" />
   <link rel="stylesheet" href="/css/style.css" />
+
+  <meta property="og:title" content="How Old Am I? – Exact Age Today Calculator" />
+  <meta property="og:description" content="Instantly calculate your exact age today (years, months, days, weeks and total days)." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://age-time-tools.pages.dev/how-old-am-i.html" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="How Old Am I? – Exact Age Today" />
+  <meta name="twitter:description" content="Calculate your exact age today in seconds." />
 </head>
 <body>
   <header class="site-header">
@@ -104,5 +117,50 @@
   </footer>
 
   <script src="/js/main.js" defer></script>
+
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "How Old Am I Calculator",
+    "url": "https://age-time-tools.pages.dev/how-old-am-i.html",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "All",
+    "description": "Free calculator to find your exact age today in years, months, days, weeks and total days."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is “How old am I” accurate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We use calendar math and include leap years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you store my birth date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Everything runs locally in your browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I calculate my age for a future date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — use the Age Calculator page."
+        }
+      }
+    ]
+  }
+  </script>
 </body>
 </html>
