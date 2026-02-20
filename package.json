@@ -2,9 +2,6 @@
   "name": "age-time-tools",
   "private": true,
   "scripts": {
-    "build": "terser js/main.js -c -m --ecma 2020 -o js/main.min.js"
-  },
-  "devDependencies": {
-    "terser": "^5.0.0"
+    "build": "npx terser js/main.js -c -m --ecma 2020 -o js/main.min.js"
   }
 }
