@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>How Old Will I Be in Any Year? (2050, 2060…) – Free Calculator</title>
+  <meta name="description" content="Enter your birth date and a target year (e.g., 2050 or 2060) to instantly calculate how old you will be. Fast, accurate, and free." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://agetimetools.online/how-old-will-i-be.html" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="/index.html" aria-label="AgeTimeTools home">
+    <span class="brand-mark">⏱️</span>
+    <span class="brand-name">AgeTimeTools</span>
+  </a>
+
+  <nav class="nav">
+    <a href="/how-old-am-i.html" class="nav-link">How Old Am I</a>
+    <a href="/age-calculator.html" class="nav-link">Age Calculator</a>
+    <a href="/age-difference-calculator.html" class="nav-link">Age Difference</a>
+  </nav>
+</header>
+
+<main class="container" data-tool="how-old-will-i-be">
+
+  <section class="section">
+    <div class="section-head">
+      <h1>How Old Will I Be in Any Year?</h1>
+      <p class="muted">Enter your birth date and a target year (e.g., 2050, 2060) to see your age on your birthday in that year.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr;">
+      <div class="tool-card" style="cursor:default;">
+        <div>
+          <div class="tool-title">Calculator</div>
+          <div class="tool-desc">Works for future years and past years too.</div>
+
+          <div style="margin-top:14px; display:grid; gap:10px;">
+            <label>
+              <span class="muted">Your date of birth</span><br />
+              <input id="wy_dob" type="date" />
+            </label>
+
+            <label>
+              <span class="muted">Target year</span><br />
+              <input id="wy_year" type="number" inputmode="numeric" min="1900" max="2500" placeholder="2050" />
+            </label>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button id="wy_calc" class="btn">Calculate</button>
+              <button id="wy_reset" class="btn btn-ghost" type="button">Reset</button>
+            </div>
+          </div>
+
+          <div id="wy_result" style="margin-top:16px;">
+            <div class="result-empty">Enter your birth date and a target year to see the result.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Examples</h2>
+    <p>If you enter a target year like <strong>2050</strong> or <strong>2060</strong>, the calculator shows your age on your birthday in that year. This is usually what people mean by “How old will I be in 2050?”.</p>
+  </section>
+
+  <section class="section">
+    <h2>How the calculation works</h2>
+    <p>We take your birth date and build the same month/day in the target year. Then we compute the exact calendar difference in years, months, and days.</p>
+    <p>If you were born on <strong>February 29</strong> and the target year is not a leap year, we use <strong>February 28</strong> for that year.</p>
+  </section>
+
+  <section class="section">
+    <h2>FAQ</h2>
+
+    <h3>Can I enter any year (2050, 2060, 2070)?</h3>
+    <p>Yes. You can enter any year in the input field.</p>
+
+    <h3>What if my birthday hasn’t happened yet in that year?</h3>
+    <p>This calculator shows your age <strong>on your birthday</strong> in the chosen year.</p>
+
+    <h3>Does it work for past years?</h3>
+    <p>Yes. You can use it to check how old you were in a previous year as well.</p>
+  </section>
+
+  <section class="section">
+    <h2>Related tools</h2>
+    <p class="muted">
+      <a href="/how-old-am-i.html">How Old Am I</a> ·
+      <a href="/age-calculator.html">Age Calculator</a> ·
+      <a href="/age-difference-calculator.html">Age Difference Calculator</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-brand">AgeTimeTools</div>
+      <div class="muted">Fast calculators for everyday questions.</div>
+    </div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js" defer></script>
+</body>
+</html>

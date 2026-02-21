@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Baby Age Difference Calculator – Months, Weeks & Days</title>
+  <meta name="description" content="Compare two babies’ ages by birth date. Get the age difference in months, weeks, and days instantly. Free and accurate." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://agetimetools.online/baby-age-difference-calculator.html" />
+
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="/index.html" aria-label="AgeTimeTools home">
+    <span class="brand-mark">⏱️</span>
+    <span class="brand-name">AgeTimeTools</span>
+  </a>
+
+  <nav class="nav">
+    <a href="/age-difference-calculator.html" class="nav-link">Age Difference</a>
+    <a href="/how-old-am-i.html" class="nav-link">How Old Am I</a>
+    <a href="/age-calculator.html" class="nav-link">Age Calculator</a>
+  </nav>
+</header>
+
+<main class="container" data-tool="baby-age-diff">
+
+  <section class="section">
+    <div class="section-head">
+      <h1>Baby Age Difference Calculator</h1>
+      <p class="muted">Enter two birth dates to see the age gap in days, weeks, and months.</p>
+    </div>
+
+    <div class="grid" style="grid-template-columns: 1fr;">
+      <div class="tool-card" style="cursor:default;">
+        <div>
+          <div class="tool-title">Calculator</div>
+          <div class="tool-desc">Useful for siblings, playgroups, milestones, and planning.</div>
+
+          <div style="margin-top:14px; display:grid; gap:10px;">
+            <label>
+              <span class="muted">Baby A birth date</span><br />
+              <input id="bd_a" type="date" />
+            </label>
+
+            <label>
+              <span class="muted">Baby B birth date</span><br />
+              <input id="bd_b" type="date" />
+            </label>
+
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+              <button id="bd_calc" class="btn">Calculate</button>
+              <button id="bd_reset" class="btn btn-ghost" type="button">Reset</button>
+            </div>
+          </div>
+
+          <div id="bd_result" style="margin-top:16px;">
+            <div class="result-empty">Enter both birth dates to see the difference.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>How the calculation works</h2>
+    <p>We compare the two birth dates using calendar-accurate date math and show the difference in years/months/days plus totals (days and weeks). Months are calendar months (not a fixed 30-day estimate).</p>
+  </section>
+
+  <section class="section">
+    <h2>FAQ</h2>
+
+    <h3>Can I use this for siblings (not only babies)?</h3>
+    <p>Yes. It works for any two people — it’s just optimized for baby-age language.</p>
+
+    <h3>Is “months difference” exact?</h3>
+    <p>Yes. It’s calculated using real calendar months and days.</p>
+  </section>
+
+  <section class="section">
+    <h2>Related tools</h2>
+    <p class="muted">
+      <a href="/age-difference-calculator.html">Age Difference Calculator</a> ·
+      <a href="/how-old-am-i.html">How Old Am I</a> ·
+      <a href="/age-calculator.html">Age Calculator</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>
+      <div class="footer-brand">AgeTimeTools</div>
+      <div class="muted">Fast calculators for everyday questions.</div>
+    </div>
+    <div class="footer-links">
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/main.js" defer></script>
+</body>
+</html>
