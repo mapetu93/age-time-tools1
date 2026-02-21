@@ -559,6 +559,220 @@ function setupLiveTime(){
   setInterval(update, 1000);
 }
 
+// ---------- Tool: How Old Will I Be ----------
+function isLeapYear(y){
+  return (y % 4 === 0 && y % 100 !== 0) || (y % 400 === 0);
+}
+
+function setupHowOldWillIBe(){
+  const shell = document.querySelector('[data-tool="how-old-will-i-be"]');
+  if (!shell) return;
+
+  const dob = document.getElementById("wy_dob");
+  const year = document.getElementById("wy_year");
+  const calc = document.getElementById("wy_calc");
+  const reset = document.getElementById("wy_reset");
+  const out = document.getElementById("wy_result");
+
+  function run(){
+    if (!dob?.value || !year?.value){
+      out.innerHTML = '<div class="result-empty">Enter your birth date and a target year to see the result.</div>';
+      return;
+    }
+
+    const from = new Date(dob.value + "T00:00:00");
+    const targetYear = parseInt(year.value, 10);
+
+    if (!Number.isFinite(targetYear) || targetYear < 1900 || targetYear > 2500){
+      out.innerHTML = '<div class="result-empty">Please enter a valid year (1900–2500).</div>';
+      return;
+    }
+
+    // Build "birthday in target year"
+    const m = from.getMonth(); // 0-11
+    const d = from.getDate();
+
+    let targetMonth = m;
+    let targetDay = d;
+
+    // Handle Feb 29 on non-leap years: use Feb 28
+    if (m === 1 && d === 29 && !isLeapYear(targetYear)){
+      targetMonth = 1; // Feb
+      targetDay = 28;
+    }
+
+    const birthdayTargetYear = new Date(targetYear, targetMonth, targetDay);
+
+    if (birthdayTargetYear < from){
+      out.innerHTML = '<div class="result-empty">Target year must be the same as or after your birth year.</div>';
+      return;
+    }
+
+    const age = diffYMD(from, birthdayTargetYear);
+
+    out.innerHTML = `
+      <div><strong>Result:</strong> On your birthday in ${targetYear}, you will be ${age.years} years old.</div>
+      <div class="kpi">
+        <div class="box">
+          <div class="label">Age (years)</div>
+          <div class="value">${age.years}</div>
+        </div>
+        <div class="box">
+          <div class="label">Birthday date</div>
+          <div class="value">${birthdayTargetYear.getFullYear()}-${pad2(birthdayTargetYear.getMonth()+1)}-${pad2(birthdayTargetYear.getDate())}</div>
+        </div>
+        <div class="box">
+          <div class="label">Exact breakdown</div>
+          <div class="value">${age.years}y ${age.months}m ${age.days}d</div>
+        </div>
+      </div>
+    `;
+  }
+
+  calc?.addEventListener("click", run);
+  reset?.addEventListener("click", () => {
+    dob.value = "";
+    year.value = "";
+    out.innerHTML = '<div class="result-empty">Enter your birth date and a target year to see the result.</div>';
+  });
+
+  [dob, year].forEach(el => el && el.addEventListener("change", () => {
+    if (dob.value && year.value) run();
+  }));
+}
+
+
+// ---------- Tool: Baby Age Difference ----------
+function setupBabyAgeDifference(){
+  const shell = document.querySelector('[data-tool="baby-age-diff"]');
+  if (!shell) return;
+
+  const a = document.getElementById("bd_a");
+  const b = document.getElementById("bd_b");
+  const calc = document.getElementById("bd_calc");
+  const reset = document.getElementById("bd_reset");
+  const out = document.getElementById("bd_result");
+
+  function run(){
+    if (!a?.value || !b?.value){
+      out.innerHTML = '<div class="result-empty">Enter both birth dates to see the difference.</div>';
+      return;
+    }
+
+    const d1 = new Date(a.value + "T00:00:00");
+    const d2 = new Date(b.value + "T00:00:00");
+
+    const older = d1 <= d2 ? d1 : d2;
+    const younger = d1 <= d2 ? d2 : d1;
+
+    const gap = diffYMD(older, younger);
+    const totalDays = daysBetween(older, younger);
+    const totalWeeks = Math.floor(totalDays / 7);
+
+    // Exact calendar months from Y/M diff
+    const totalCalendarMonths = gap.years * 12 + gap.months;
+
+    const who = (d1.getTime() === d2.getTime())
+      ? "Same birth date"
+      : (older.getTime() === d1.getTime() ? "Baby A is older" : "Baby B is older");
+
+    out.innerHTML = `
+      <div><strong>${who}:</strong> ${gap.years} years, ${gap.months} months, ${gap.days} days</div>
+      <div class="kpi">
+        <div class="box">
+          <div class="label">Total days</div>
+          <div class="value">${totalDays}</div>
+        </div>
+        <div class="box">
+          <div class="label">Total weeks</div>
+          <div class="value">${totalWeeks}</div>
+        </div>
+        <div class="box">
+          <div class="label">Calendar months</div>
+          <div class="value">${totalCalendarMonths}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  calc?.addEventListener("click", run);
+  reset?.addEventListener("click", () => {
+    a.value = "";
+    b.value = "";
+    out.innerHTML = '<div class="result-empty">Enter both birth dates to see the difference.</div>';
+  });
+
+  [a, b].forEach(el => el && el.addEventListener("change", () => {
+    if (a.value && b.value) run();
+  }));
+}
+
+
+// ---------- Tool: Light Years to Kilometers ----------
+function formatSci(n){
+  if (!Number.isFinite(n)) return "—";
+  if (Math.abs(n) >= 1e9) return n.toExponential(6);
+  return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
+}
+
+function setupLightYearsToKilometers(){
+  const shell = document.querySelector('[data-tool="ly-to-km"]');
+  if (!shell) return;
+
+  const inp = document.getElementById("ly_in");
+  const calc = document.getElementById("ly_calc");
+  const reset = document.getElementById("ly_reset");
+  const out = document.getElementById("ly_result");
+
+  const KM_PER_LY = 9.4607304725808e12; // km in 1 light year
+  const MILES_PER_KM = 0.621371192237334;
+
+  function run(){
+    if (!inp?.value){
+      out.innerHTML = '<div class="result-empty">Enter a value to convert.</div>';
+      return;
+    }
+    const ly = Number(inp.value);
+    if (!Number.isFinite(ly)){
+      out.innerHTML = '<div class="result-empty">Please enter a valid number.</div>';
+      return;
+    }
+
+    const km = ly * KM_PER_LY;
+    const miles = km * MILES_PER_KM;
+
+    out.innerHTML = `
+      <div><strong>Result:</strong> ${ly} ly = ${formatSci(km)} km</div>
+      <div style="margin-top:8px;"><strong>In miles:</strong> ${formatSci(miles)} mi</div>
+      <div class="kpi" style="margin-top:14px;">
+        <div class="box">
+          <div class="label">Kilometers</div>
+          <div class="value">${formatSci(km)}</div>
+        </div>
+        <div class="box">
+          <div class="label">Miles</div>
+          <div class="value">${formatSci(miles)}</div>
+        </div>
+        <div class="box">
+          <div class="label">Constant</div>
+          <div class="value">1 ly ≈ 9.4607e12 km</div>
+        </div>
+      </div>
+    `;
+  }
+
+  calc?.addEventListener("click", run);
+  reset?.addEventListener("click", () => {
+    inp.value = "";
+    out.innerHTML = '<div class="result-empty">Enter a value to convert.</div>';
+  });
+
+  inp?.addEventListener("input", () => {
+    if (inp.value) run();
+  });
+}
+
+
 // ---------- Init ----------
 document.addEventListener("DOMContentLoaded", () => {
   setupHomepageQuickCalc();
@@ -568,6 +782,11 @@ document.addEventListener("DOMContentLoaded", () => {
   setupHowOldAmI();
   setupTimeZoneConverter();
   setupTimeDifference();
+
+  // NEW pages
+  setupHowOldWillIBe();
+  setupBabyAgeDifference();
+  setupLightYearsToKilometers();
+
   setupLiveTime();
 });
-
