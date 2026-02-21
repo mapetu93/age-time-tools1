@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <title>Light Years to Kilometers Converter (ly to km) – Free</title>
-  <meta name="description" content="Convert light years (ly) to kilometers (km) instantly. Fast, accurate, and free online converter." />
+  <title>How Long to Travel X Light Years? – Space Travel Time Calculator</title>
+  <meta name="description" content="Calculate how long it would take to travel X light years at a chosen speed (km/h or % of light speed). Get results in years, days and hours." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://agetimetools.online/light-years-to-kilometers.html" />
 
@@ -26,34 +26,52 @@
   </nav>
 </header>
 
-<main class="container" data-tool="ly-to-km">
+<main class="container" data-tool="ly-travel-time">
 
   <section class="section">
     <div class="section-head">
-      <h1>Light Years to Kilometers Converter</h1>
-      <p class="muted">Convert <strong>ly → km</strong> instantly using a standard astronomical constant.</p>
+      <h1>How Long Would It Take to Travel X Light Years?</h1>
+      <p class="muted">Enter a distance in light years and choose a travel speed to see the travel time in years, days, and hours.</p>
     </div>
 
     <div class="grid" style="grid-template-columns: 1fr;">
       <div class="tool-card" style="cursor:default;">
         <div>
-          <div class="tool-title">Converter</div>
-          <div class="tool-desc">Enter a value in light years and get kilometers (and miles).</div>
+          <div class="tool-title">Space Travel Time Calculator</div>
+          <div class="tool-desc">Works with either km/h or a percentage of the speed of light.</div>
 
-          <div style="margin-top:14px; display:grid; gap:10px;">
+          <div style="margin-top:14px; display:grid; gap:12px;">
             <label>
-              <span class="muted">Light years (ly)</span><br />
-              <input id="ly_in" type="number" inputmode="decimal" step="any" placeholder="e.g., 4.2" />
+              <span class="muted">Distance (light years)</span><br />
+              <input id="tt_ly" type="number" inputmode="decimal" step="any" placeholder="e.g., 4.2" />
+            </label>
+
+            <label>
+              <span class="muted">Speed mode</span><br />
+              <select id="tt_mode">
+                <option value="percent_c">% of light speed (c)</option>
+                <option value="kmh">Kilometers per hour (km/h)</option>
+              </select>
+            </label>
+
+            <label id="tt_percent_wrap">
+              <span class="muted">Speed (% of c)</span><br />
+              <input id="tt_percent" type="number" inputmode="decimal" step="any" min="0" max="100" placeholder="e.g., 10" />
+            </label>
+
+            <label id="tt_kmh_wrap" style="display:none;">
+              <span class="muted">Speed (km/h)</span><br />
+              <input id="tt_kmh" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g., 50000" />
             </label>
 
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button id="ly_calc" class="btn">Convert</button>
-              <button id="ly_reset" class="btn btn-ghost" type="button">Reset</button>
+              <button id="tt_calc" class="btn">Calculate</button>
+              <button id="tt_reset" class="btn btn-ghost" type="button">Reset</button>
             </div>
           </div>
 
-          <div id="ly_result" style="margin-top:16px;">
-            <div class="result-empty">Enter a value to convert.</div>
+          <div id="tt_result" style="margin-top:16px;">
+            <div class="result-empty">Enter a distance and speed to calculate travel time.</div>
           </div>
         </div>
       </div>
@@ -61,18 +79,22 @@
   </section>
 
   <section class="section">
-    <h2>Conversion formula</h2>
-    <p><strong>1 light year</strong> ≈ 9.4607304725808 × 10<sup>12</sup> kilometers.</p>
-    <p>This is the distance light travels in a vacuum in one Julian year.</p>
+    <h2>How it works</h2>
+    <p>
+      A light year is a distance unit: the distance light travels in one Julian year.
+      We convert light years to kilometers, then divide by your chosen speed to estimate travel time.
+    </p>
+    <p class="muted">
+      Note: This is a simplified estimate and ignores acceleration, deceleration, and relativity effects near light speed.
+    </p>
   </section>
 
   <section class="section">
-    <h2>FAQ</h2>
-    <h3>Is a light year a unit of time?</h3>
-    <p>No — it’s a unit of distance.</p>
-
-    <h3>Can I convert to miles too?</h3>
-    <p>Yes. This page outputs both kilometers and miles.</p>
+    <h2>Examples</h2>
+    <p>
+      Proxima Centauri is about <strong>4.2 light years</strong> away.
+      Try 4.2 ly and 10% of c to see an approximate travel time.
+    </p>
   </section>
 
 </main>
