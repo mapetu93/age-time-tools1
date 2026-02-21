@@ -709,67 +709,116 @@ function setupBabyAgeDifference(){
 
 
 // ---------- Tool: Light Years to Kilometers ----------
-function formatSci(n){
-  if (!Number.isFinite(n)) return "—";
-  if (Math.abs(n) >= 1e9) return n.toExponential(6);
-  return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
-}
 
 function setupLightYearsToKilometers(){
-  const shell = document.querySelector('[data-tool="ly-to-km"]');
+  // We keep the function name for compatibility with existing calls,
+  // but this tool is now "Light Years Travel Time".
+  const shell = document.querySelector('[data-tool="ly-travel-time"]');
   if (!shell) return;
 
-  const inp = document.getElementById("ly_in");
-  const calc = document.getElementById("ly_calc");
-  const reset = document.getElementById("ly_reset");
-  const out = document.getElementById("ly_result");
+  const lyIn = document.getElementById("tt_ly");
+  const mode = document.getElementById("tt_mode");
+  const percentWrap = document.getElementById("tt_percent_wrap");
+  const kmhWrap = document.getElementById("tt_kmh_wrap");
+  const percent = document.getElementById("tt_percent");
+  const kmh = document.getElementById("tt_kmh");
+  const calc = document.getElementById("tt_calc");
+  const reset = document.getElementById("tt_reset");
+  const out = document.getElementById("tt_result");
 
-  const KM_PER_LY = 9.4607304725808e12; // km in 1 light year
-  const MILES_PER_KM = 0.621371192237334;
+  // constants
+  const KM_PER_LY = 9.4607304725808e12;
+  const C_KMH = 299792.458 * 3600; // speed of light in km/h
+
+  function setModeUI(){
+    const m = mode.value;
+    if (m === "kmh"){
+      kmhWrap.style.display = "";
+      percentWrap.style.display = "none";
+    } else {
+      percentWrap.style.display = "";
+      kmhWrap.style.display = "none";
+    }
+  }
+
+  function toNice(n){
+    if (!Number.isFinite(n)) return "—";
+    if (Math.abs(n) >= 1e9) return n.toExponential(6);
+    return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
+  }
 
   function run(){
-    if (!inp?.value){
-      out.innerHTML = '<div class="result-empty">Enter a value to convert.</div>';
+    if (!lyIn.value){
+      out.innerHTML = '<div class="result-empty">Enter a distance and speed to calculate travel time.</div>';
       return;
     }
-    const ly = Number(inp.value);
-    if (!Number.isFinite(ly)){
-      out.innerHTML = '<div class="result-empty">Please enter a valid number.</div>';
+    const ly = Number(lyIn.value);
+    if (!Number.isFinite(ly) || ly <= 0){
+      out.innerHTML = '<div class="result-empty">Please enter a valid distance in light years.</div>';
       return;
     }
 
-    const km = ly * KM_PER_LY;
-    const miles = km * MILES_PER_KM;
+    let speedKmh = 0;
+
+    if (mode.value === "kmh"){
+      const v = Number(kmh.value);
+      if (!Number.isFinite(v) || v <= 0){
+        out.innerHTML = '<div class="result-empty">Please enter a valid speed in km/h.</div>';
+        return;
+      }
+      speedKmh = v;
+    } else {
+      const p = Number(percent.value);
+      if (!Number.isFinite(p) || p <= 0){
+        out.innerHTML = '<div class="result-empty">Please enter a valid % of light speed (e.g., 10).</div>';
+        return;
+      }
+      if (p > 100){
+        out.innerHTML = '<div class="result-empty">% of c cannot be greater than 100.</div>';
+        return;
+      }
+      speedKmh = (p / 100) * C_KMH;
+    }
+
+    const distanceKm = ly * KM_PER_LY;
+    const hours = distanceKm / speedKmh;
+    const days = hours / 24;
+    const years = days / 365.25; // simple estimate
 
     out.innerHTML = `
-      <div><strong>Result:</strong> ${ly} ly = ${formatSci(km)} km</div>
-      <div style="margin-top:8px;"><strong>In miles:</strong> ${formatSci(miles)} mi</div>
+      <div><strong>Result:</strong> Traveling ${ly} light years at your chosen speed would take about <strong>${toNice(years)}</strong> years.</div>
       <div class="kpi" style="margin-top:14px;">
         <div class="box">
-          <div class="label">Kilometers</div>
-          <div class="value">${formatSci(km)}</div>
+          <div class="label">Years</div>
+          <div class="value">${toNice(years)}</div>
         </div>
         <div class="box">
-          <div class="label">Miles</div>
-          <div class="value">${formatSci(miles)}</div>
+          <div class="label">Days</div>
+          <div class="value">${toNice(days)}</div>
         </div>
         <div class="box">
-          <div class="label">Constant</div>
-          <div class="value">1 ly ≈ 9.4607e12 km</div>
+          <div class="label">Hours</div>
+          <div class="value">${toNice(hours)}</div>
         </div>
+      </div>
+      <div style="margin-top:10px;" class="muted">
+        Distance: ${toNice(distanceKm)} km · Speed: ${toNice(speedKmh)} km/h
       </div>
     `;
   }
 
-  calc?.addEventListener("click", run);
-  reset?.addEventListener("click", () => {
-    inp.value = "";
-    out.innerHTML = '<div class="result-empty">Enter a value to convert.</div>';
+  mode.addEventListener("change", () => { setModeUI(); });
+  calc.addEventListener("click", run);
+  reset.addEventListener("click", () => {
+    lyIn.value = "";
+    percent.value = "";
+    kmh.value = "";
+    mode.value = "percent_c";
+    setModeUI();
+    out.innerHTML = '<div class="result-empty">Enter a distance and speed to calculate travel time.</div>';
   });
 
-  inp?.addEventListener("input", () => {
-    if (inp.value) run();
-  });
+  setModeUI();
 }
 
 
@@ -790,3 +839,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupLiveTime();
 });
+
