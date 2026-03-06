@@ -8,104 +8,142 @@
   <meta name="description" content="Calculate how long it would take to travel X light years at a chosen speed (km/h or % of light speed). Get results in years, days and hours." />
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://agetimetools.online/light-years-to-kilometers.html" />
-
   <link rel="stylesheet" href="/css/style.css" />
+
+  <meta property="og:title" content="Space Travel Time Calculator – How Long to Travel X Light Years?" />
+  <meta property="og:description" content="Enter a distance in light years and a speed to instantly calculate travel time in years, days and hours." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://agetimetools.online/light-years-to-kilometers.html" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="How Long to Travel X Light Years?" />
+  <meta name="twitter:description" content="Calculate space travel time in years, days and hours." />
 </head>
 <body>
 
 <header class="site-header">
-  <a class="brand" href="/.html" aria-label="AgeTimeTools home">
-    <span class="brand-mark">⏱️</span>
+  <a class="brand" href="/" aria-label="AgeTimeTools home">
+    <span class="brand-mark" aria-hidden="true">⏱️</span>
     <span class="brand-name">AgeTimeTools</span>
   </a>
-
   <nav class="nav">
-    <a href="/#converter-tools" class="nav-link">Converter Tools</a>
     <a href="/how-old-am-i.html" class="nav-link">Age Tools</a>
     <a href="/time-zone-converter.html" class="nav-link">Time Tools</a>
+    <a href="/#tools" class="nav-link">All tools</a>
   </nav>
 </header>
 
-<main class="container" data-tool="ly-travel-time">
+<main class="container">
+  <div class="page-head">
+    <h1>How Long Would It Take to Travel X Light Years?</h1>
+    <p class="lead">Enter a distance in light years and choose a speed — get travel time in years, days and hours.</p>
+  </div>
 
-  <section class="section">
-    <div class="section-head">
-      <h1>How Long Would It Take to Travel X Light Years?</h1>
-      <p class="muted">Enter a distance in light years and choose a travel speed to see the travel time in years, days, and hours.</p>
-    </div>
+  <section class="tool-shell" data-tool="ly-travel-time">
+    <div class="tool-card-wrap">
+      <div class="tool-card-lg">
 
-    <div class="grid" style="grid-template-columns: 1fr;">
-      <div class="tool-card" style="cursor:default;">
-        <div>
-          <div class="tool-title">Space Travel Time Calculator</div>
-          <div class="tool-desc">Works with either km/h or a percentage of the speed of light.</div>
+        <div class="form-grid">
+          <label class="field">
+            <span>Distance (light years)</span>
+            <input id="tt_ly" type="number" inputmode="decimal" step="any" placeholder="e.g. 4.2" />
+          </label>
 
-          <div style="margin-top:14px; display:grid; gap:12px;">
-            <label>
-              <span class="muted">Distance (light years)</span><br />
-              <input id="tt_ly" type="number" inputmode="decimal" step="any" placeholder="e.g., 4.2" />
-            </label>
+          <label class="field">
+            <span>Speed mode</span>
+            <select id="tt_mode">
+              <option value="percent_c">% of light speed (c)</option>
+              <option value="kmh">Kilometers per hour (km/h)</option>
+            </select>
+          </label>
 
-            <label>
-              <span class="muted">Speed mode</span><br />
-              <select id="tt_mode">
-                <option value="percent_c">% of light speed (c)</option>
-                <option value="kmh">Kilometers per hour (km/h)</option>
-              </select>
-            </label>
+          <label class="field" id="tt_percent_wrap">
+            <span>Speed (% of c)</span>
+            <input id="tt_percent" type="number" inputmode="decimal" step="any" min="0" max="100" placeholder="e.g. 10" />
+          </label>
 
-            <label id="tt_percent_wrap">
-              <span class="muted">Speed (% of c)</span><br />
-              <input id="tt_percent" type="number" inputmode="decimal" step="any" min="0" max="100" placeholder="e.g., 10" />
-            </label>
-
-            <label id="tt_kmh_wrap" style="display:none;">
-              <span class="muted">Speed (km/h)</span><br />
-              <input id="tt_kmh" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g., 50000" />
-            </label>
-
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <button id="tt_calc" type="button" class="btn">Calculate</button>
-              <button id="tt_reset" class="btn btn-ghost" type="button">Reset</button>
-            </div>
-          </div>
-
-          <div id="tt_result" style="margin-top:16px;">
-            <div class="result-empty">Enter a distance and speed to calculate travel time.</div>
-          </div>
+          <label class="field" id="tt_kmh_wrap" style="display:none;">
+            <span>Speed (km/h)</span>
+            <input id="tt_kmh" type="number" inputmode="decimal" step="any" min="0" placeholder="e.g. 50000" />
+          </label>
         </div>
+
+        <div class="btn-row">
+          <button id="tt_calc" type="button" class="btn">Calculate</button>
+          <button id="tt_reset" class="btn btn-ghost" type="button">Reset</button>
+        </div>
+
+        <div class="result-panel" id="tt_result" aria-live="polite">
+          <div class="result-empty">Enter a distance and speed to calculate travel time.</div>
+        </div>
+
+        <p class="tiny-note">Note: simplified estimate — ignores acceleration, deceleration, and relativistic effects near light speed.</p>
       </div>
+
+      <aside class="tool-side">
+        <div class="side-box">
+          <div class="side-title">Related tools</div>
+          <a class="side-link" href="/time-zone-converter.html">Time Zone Converter</a>
+          <a class="side-link" href="/time-difference-calculator.html">Time Difference</a>
+          <a class="side-link" href="/age-calculator.html">Age Calculator</a>
+        </div>
+
+        <div class="side-box">
+          <div class="side-title">Quick examples</div>
+          <ul class="bullets">
+            <li>Proxima Centauri: 4.2 ly</li>
+            <li>Andromeda Galaxy: 2,537,000 ly</li>
+            <li>Edge of Milky Way: ~50,000 ly</li>
+          </ul>
+        </div>
+      </aside>
     </div>
-  </section>
 
-  <section class="section">
-    <h2>How it works</h2>
-    <p>
-      A light year is a distance unit: the distance light travels in one Julian year.
-      We convert light years to kilometers, then divide by your chosen speed to estimate travel time.
-    </p>
-    <p class="muted">
-      Note: This is a simplified estimate and ignores acceleration, deceleration, and relativity effects near light speed.
-    </p>
-  </section>
+    <section class="section">
+      <h2>How it works</h2>
+      <p>
+        A light year is the distance light travels in one Julian year — about 9.46 trillion kilometers.
+        We convert your light year distance to kilometers, then divide by your chosen speed to estimate travel time in years, days, and hours.
+      </p>
 
-  <section class="section">
-    <h2>Examples</h2>
-    <p>
-      Proxima Centauri is about <strong>4.2 light years</strong> away.
-      Try 4.2 ly and 10% of c to see an approximate travel time.
-    </p>
-  </section>
+      <h2>Examples</h2>
+      <p>
+        Proxima Centauri is about <strong>4.2 light years</strong> away — the closest star to our Sun.
+        Try 4.2 ly at 10% of light speed to see an approximate travel time of around 42 years.
+        The Andromeda Galaxy at 2.5 million light years shows just how vast intergalactic distances are.
+      </p>
+    </section>
 
+    <section class="section faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>What is a light year?</summary>
+        <p>A light year is a unit of distance — the distance light travels in one year, approximately 9.46 trillion kilometers (5.88 trillion miles).</p>
+      </details>
+      <details>
+        <summary>How long would it take to travel 1 light year?</summary>
+        <p>At 10% of the speed of light, it would take about 10 years. At a typical spacecraft speed of 50,000 km/h, it would take roughly 21,000 years.</p>
+      </details>
+      <details>
+        <summary>How long to travel to Proxima Centauri (4.2 ly)?</summary>
+        <p>At 10% of light speed, approximately 42 years. At current spacecraft speeds, tens of thousands of years.</p>
+      </details>
+      <details>
+        <summary>Does this account for relativity?</summary>
+        <p>No — this is a simplified Newtonian estimate. At speeds close to light, relativistic time dilation would significantly change the experienced travel time.</p>
+      </details>
+    </section>
+  </section>
 </main>
 
 <footer class="footer">
   <div class="container footer-inner">
-    <div>
+    <div class="footer-left">
       <div class="footer-brand">AgeTimeTools</div>
       <div class="muted">Fast calculators for everyday questions.</div>
     </div>
     <div class="footer-links">
+      <a href="/">Home</a>
       <a href="/about.html">About</a>
       <a href="/contact.html">Contact</a>
       <a href="/terms.html">Terms</a>
@@ -115,8 +153,58 @@
 </footer>
 
 <script src="/js/main.min.js" defer></script>
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Space Travel Time Calculator",
+  "url": "https://agetimetools.online/light-years-to-kilometers.html",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "description": "Calculate how long it would take to travel X light years at a chosen speed in km/h or percentage of light speed."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a light year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A light year is a unit of distance — the distance light travels in one year, approximately 9.46 trillion kilometers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long would it take to travel 1 light year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At 10% of the speed of light, about 10 years. At 50,000 km/h, roughly 21,000 years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long to travel to Proxima Centauri (4.2 ly)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At 10% of light speed, approximately 42 years. At current spacecraft speeds, tens of thousands of years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this account for relativity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — this is a simplified Newtonian estimate. At speeds close to light, relativistic time dilation would significantly change the experienced travel time."
+      }
+    }
+  ]
+}
+</script>
 </body>
 </html>
-
-
-
