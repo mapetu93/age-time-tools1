@@ -568,11 +568,38 @@ function setupHowOldWillIBe(){
   const shell = document.querySelector('[data-tool="how-old-will-i-be"]');
   if (!shell) return;
 
-  const dob = document.getElementById("wy_dob");
+  const dob  = document.getElementById("wy_dob");
   const year = document.getElementById("wy_year");
   const calc = document.getElementById("wy_calc");
   const reset = document.getElementById("wy_reset");
-  const out = document.getElementById("wy_result");
+  const out  = document.getElementById("wy_result");
+  const grid = document.getElementById("wy_year_grid");
+
+  // Build quick-select year buttons
+  if (grid) {
+    const currentYear = new Date().getFullYear();
+    const popularYears = [];
+    let y = Math.ceil(currentYear / 5) * 5;
+    while (y <= currentYear + 65) { popularYears.push(y); y += 5; }
+    [2030, 2040, 2050, 2060, 2070, 2075, 2100].forEach(yr => {
+      if (!popularYears.includes(yr) && yr > currentYear) popularYears.push(yr);
+    });
+    popularYears.sort((a, b) => a - b);
+
+    popularYears.forEach(yr => {
+      const btn = document.createElement("button");
+      btn.className = "year-btn";
+      btn.textContent = yr;
+      btn.type = "button";
+      btn.addEventListener("click", () => {
+        grid.querySelectorAll(".year-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        year.value = yr;
+        if (dob.value) run();
+      });
+      grid.appendChild(btn);
+    });
+  }
 
   function run(){
     if (!dob?.value || !year?.value){
@@ -588,16 +615,10 @@ function setupHowOldWillIBe(){
       return;
     }
 
-    // Build "birthday in target year"
-    const m = from.getMonth(); // 0-11
-    const d = from.getDate();
+    let targetMonth = from.getMonth();
+    let targetDay   = from.getDate();
 
-    let targetMonth = m;
-    let targetDay = d;
-
-    // Handle Feb 29 on non-leap years: use Feb 28
-    if (m === 1 && d === 29 && !isLeapYear(targetYear)){
-      targetMonth = 1; // Feb
+    if (targetMonth === 1 && targetDay === 29 && !isLeapYear(targetYear)){
       targetDay = 28;
     }
 
@@ -609,16 +630,17 @@ function setupHowOldWillIBe(){
     }
 
     const age = diffYMD(from, birthdayTargetYear);
+    const label = targetYear >= new Date().getFullYear() ? "will be" : "were";
 
     out.innerHTML = `
-      <div><strong>Result:</strong> On your birthday in ${targetYear}, you will be ${age.years} years old.</div>
+      <div><strong>On your birthday in ${targetYear}, you ${label} <span style="color:var(--accent,#6366f1);font-size:1.2em;">${age.years} years old</span>.</strong></div>
       <div class="kpi">
         <div class="box">
           <div class="label">Age (years)</div>
           <div class="value">${age.years}</div>
         </div>
         <div class="box">
-          <div class="label">Birthday date</div>
+          <div class="label">Birthday in ${targetYear}</div>
           <div class="value">${birthdayTargetYear.getFullYear()}-${pad2(birthdayTargetYear.getMonth()+1)}-${pad2(birthdayTargetYear.getDate())}</div>
         </div>
         <div class="box">
@@ -633,14 +655,121 @@ function setupHowOldWillIBe(){
   reset?.addEventListener("click", () => {
     dob.value = "";
     year.value = "";
+    if (grid) grid.querySelectorAll(".year-btn").forEach(b => b.classList.remove("active"));
     out.innerHTML = '<div class="result-empty">Enter your birth date and a target year to see the result.</div>';
   });
 
-  [dob, year].forEach(el => el && el.addEventListener("change", () => {
+  dob?.addEventListener("change", () => { if (dob.value && year.value) run(); });
+  year?.addEventListener("change", () => {
+    if (grid) grid.querySelectorAll(".year-btn").forEach(b => b.classList.remove("active"));
     if (dob.value && year.value) run();
-  }));
+  });
 }
 
+// ---------- Tool: How Old Will I Be In [Year] (merged into setupHowOldWillIBe above) ----------
+function setupHowOldWillIBeIn(){
+  const shell = document.querySelector('[data-tool="how-old-will-i-be-in"]');
+  if (!shell) return;
+
+  const dobInput = document.getElementById("wyin_dob");
+  const yearInput = document.getElementById("wyin_year");
+  const calcBtn   = document.getElementById("wyin_calc");
+  const resetBtn  = document.getElementById("wyin_reset");
+  const out       = document.getElementById("wyin_result");
+  const grid      = document.getElementById("wyin_year_grid");
+
+  // Popular years to show as quick-select buttons
+  const currentYear = new Date().getFullYear();
+  const popularYears = [];
+  let y = Math.ceil(currentYear / 5) * 5;
+  while (y <= currentYear + 65) {
+    popularYears.push(y);
+    y += 5;
+  }
+  [2030, 2040, 2050, 2060, 2070, 2075, 2100].forEach(yr => {
+    if (!popularYears.includes(yr) && yr > currentYear) popularYears.push(yr);
+  });
+  popularYears.sort((a, b) => a - b);
+
+  // Render year buttons
+  popularYears.forEach(yr => {
+    const btn = document.createElement("button");
+    btn.className = "year-btn";
+    btn.textContent = yr;
+    btn.type = "button";
+    btn.addEventListener("click", () => {
+      grid.querySelectorAll(".year-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      yearInput.value = yr;
+      if (dobInput.value) run();
+    });
+    grid.appendChild(btn);
+  });
+
+  function run(){
+    if (!dobInput.value || !yearInput.value){
+      out.innerHTML = '<div class="result-empty">Enter your birth date and select a year to see your result.</div>';
+      return;
+    }
+
+    const from = new Date(dobInput.value + "T00:00:00");
+    const targetYear = parseInt(yearInput.value, 10);
+
+    if (!Number.isFinite(targetYear) || targetYear < 1900 || targetYear > 2500){
+      out.innerHTML = '<div class="result-empty">Please enter a valid year (1900–2500).</div>';
+      return;
+    }
+
+    let targetMonth = from.getMonth();
+    let targetDay   = from.getDate();
+    if (targetMonth === 1 && targetDay === 29 && !isLeapYear(targetYear)){
+      targetDay = 28;
+    }
+
+    const birthday = new Date(targetYear, targetMonth, targetDay);
+
+    if (birthday < from){
+      out.innerHTML = '<div class="result-empty">Target year must be the same as or after your birth year.</div>';
+      return;
+    }
+
+    const age = diffYMD(from, birthday);
+    const label = targetYear >= new Date().getFullYear() ? "will be" : "were";
+    const birthdayStr = `${targetYear}-${pad2(targetMonth + 1)}-${pad2(targetDay)}`;
+
+    out.innerHTML = `
+      <div><strong>On your birthday in ${targetYear}, you ${label} <span style="color:var(--accent,#6366f1);font-size:1.2em;">${age.years} years old</span>.</strong></div>
+      <div class="kpi">
+        <div class="box">
+          <div class="label">Age (years)</div>
+          <div class="value">${age.years}</div>
+        </div>
+        <div class="box">
+          <div class="label">Birthday in ${targetYear}</div>
+          <div class="value">${birthdayStr}</div>
+        </div>
+        <div class="box">
+          <div class="label">Exact breakdown</div>
+          <div class="value">${age.years}y ${age.months}m ${age.days}d</div>
+        </div>
+      </div>
+    `;
+  }
+
+  calcBtn.addEventListener("click", run);
+  resetBtn.addEventListener("click", () => {
+    dobInput.value = "";
+    yearInput.value = "";
+    grid.querySelectorAll(".year-btn").forEach(b => b.classList.remove("active"));
+    out.innerHTML = '<div class="result-empty">Enter your birth date and select a year to see your result.</div>';
+  });
+
+  dobInput.addEventListener("change", () => { if (dobInput.value && yearInput.value) run(); });
+  yearInput.addEventListener("change", () => {
+    grid.querySelectorAll(".year-btn").forEach(b => b.classList.remove("active"));
+    if (dobInput.value && yearInput.value) run();
+  });
+}
 
 // ---------- Tool: Baby Age Difference ----------
 function setupBabyAgeDifference(){
@@ -668,8 +797,6 @@ function setupBabyAgeDifference(){
     const gap = diffYMD(older, younger);
     const totalDays = daysBetween(older, younger);
     const totalWeeks = Math.floor(totalDays / 7);
-
-    // Exact calendar months from Y/M diff
     const totalCalendarMonths = gap.years * 12 + gap.months;
 
     const who = (d1.getTime() === d2.getTime())
@@ -707,12 +834,8 @@ function setupBabyAgeDifference(){
   }));
 }
 
-
 // ---------- Tool: Light Years to Kilometers ----------
-
 function setupLightYearsToKilometers(){
-  // We keep the function name for compatibility with existing calls,
-  // but this tool is now "Light Years Travel Time".
   const shell = document.querySelector('[data-tool="ly-travel-time"]');
   if (!shell) return;
 
@@ -726,9 +849,8 @@ function setupLightYearsToKilometers(){
   const reset = document.getElementById("tt_reset");
   const out = document.getElementById("tt_result");
 
-  // constants
   const KM_PER_LY = 9.4607304725808e12;
-  const C_KMH = 299792.458 * 3600; // speed of light in km/h
+  const C_KMH = 299792.458 * 3600;
 
   function setModeUI(){
     const m = mode.value;
@@ -783,7 +905,7 @@ function setupLightYearsToKilometers(){
     const distanceKm = ly * KM_PER_LY;
     const hours = distanceKm / speedKmh;
     const days = hours / 24;
-    const years = days / 365.25; // simple estimate
+    const years = days / 365.25;
 
     out.innerHTML = `
       <div><strong>Result:</strong> Traveling ${ly} light years at your chosen speed would take about <strong>${toNice(years)}</strong> years.</div>
@@ -821,7 +943,6 @@ function setupLightYearsToKilometers(){
   setModeUI();
 }
 
-
 // ---------- Init ----------
 document.addEventListener("DOMContentLoaded", () => {
   setupHomepageQuickCalc();
@@ -839,4 +960,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupLiveTime();
 });
-
