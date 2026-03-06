@@ -865,8 +865,7 @@ function setupLightYearsToKilometers(){
 
   function toNice(n){
     if (!Number.isFinite(n)) return "—";
-    if (Math.abs(n) >= 1e9) return n.toExponential(6);
-    return n.toLocaleString(undefined, { maximumFractionDigits: 6 });
+    return Math.round(n).toLocaleString();
   }
 
   function run(){
@@ -924,7 +923,7 @@ function setupLightYearsToKilometers(){
         </div>
       </div>
       <div style="margin-top:10px;" class="muted">
-        Distance: ${toNice(distanceKm)} km · Speed: ${toNice(speedKmh)} km/h
+        Distance: ${Math.round(distanceKm).toLocaleString()} km · Speed: ${Math.round(speedKmh).toLocaleString()} km/h
       </div>
     `;
   }
