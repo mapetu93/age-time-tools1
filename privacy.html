@@ -1,38 +1,360 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Privacy Policy | AgeTimeTools</title>
-  <meta name="description" content="Privacy policy for AgeTimeTools." />
-  <link rel="canonical" href="https://agetimetools.online/privacy.html" />
-  <link rel="stylesheet" href="/css/style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy | Smart Popup &amp; Redirect Blocker</title>
+  <meta name="description" content="Privacy policy for the Smart Popup & Redirect Blocker Chrome extension.">
+  <link rel="canonical" href="https://agetimetools.online/privacypolicy.html">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <style>
+    .policy-container {
+      width: min(860px, 92%);
+      margin: 0 auto;
+    }
+
+    .policy-heading {
+      padding: 48px 0 24px;
+    }
+
+    .policy-heading h1 {
+      margin: 12px 0;
+      font-size: clamp(32px, 5vw, 46px);
+      line-height: 1.2;
+      letter-spacing: -0.6px;
+    }
+
+    .policy-label {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .policy-content {
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      font-size: 16px;
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .policy-content section + section {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .policy-content h2 {
+      margin: 0 0 12px;
+      font-size: 21px;
+      line-height: 1.4;
+    }
+
+    .policy-content p {
+      margin: 0 0 14px;
+    }
+
+    .policy-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-content ul {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .policy-content li + li {
+      margin-top: 10px;
+    }
+
+    .policy-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .policy-summary {
+      margin-bottom: 26px;
+      padding: 18px;
+      background: var(--accent-soft);
+      border-radius: 12px;
+    }
+
+    .policy-summary p {
+      margin: 0;
+    }
+
+    @media (max-width: 560px) {
+      .policy-heading {
+        padding-top: 30px;
+      }
+
+      .policy-content {
+        padding: 20px;
+      }
+
+      .site-header .nav-link {
+        font-size: 13px;
+      }
+    }
+  </style>
 </head>
+
 <body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="AgeTimeTools home">
+      <span class="brand-mark" aria-hidden="true">⏱</span>
+      <span class="brand-name">AgeTimeTools</span>
+    </a>
 
-<main class="container section">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav-link active" href="/privacypolicy.html" aria-current="page">Privacy</a>
+      <a class="nav-link" href="/contact.html">Contact</a>
+    </nav>
+  </header>
 
-<h1>Privacy Policy</h1>
-<p>AgeTimeTools does not collect personal data through its calculators.</p>
-<p>We may use analytics tools to understand general traffic patterns.</p>
-<p>No personal information is sold or shared.</p>
-
-</main>
-<footer class="footer">
-  <div class="container footer-inner">
-    <div>
-      <div class="footer-brand">AgeTimeTools</div>
-      <div class="muted">Free age & time calculators.</div>
+  <main class="policy-container">
+    <div class="policy-heading">
+      <span class="policy-label">Chrome Extension</span>
+      <h1>Privacy Policy</h1>
+      <p class="lead">Smart Popup &amp; Redirect Blocker</p>
+      <p class="muted">
+        Last updated: <time datetime="2026-10-28">October 28, 2026</time>
+      </p>
     </div>
-    <div class="footer-links">
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/privacy.html">Privacy</a>
+
+    <article class="policy-content" aria-label="Extension privacy policy">
+      <div class="policy-summary">
+        <p>
+          <strong>Your browsing information stays on your device.</strong>
+          Smart Popup &amp; Redirect Blocker processes information locally
+          to block popups, redirects, and downloads according to its rules.
+          The extension does not send browsing information to the developer
+          and does not contain analytics or advertising services.
+        </p>
+      </div>
+
+      <section>
+        <h2>1. Scope of this policy</h2>
+        <p>
+          This policy applies specifically to the
+          <strong>Smart Popup &amp; Redirect Blocker</strong> Chrome extension,
+          including its popup interface and Settings panel.
+          It describes the extension's data practices, rather than the
+          functionality of the AgeTimeTools website or its calculators.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Information processed by the extension</h2>
+        <p>
+          The extension accesses the following information on your device
+          when performing its functions:
+        </p>
+        <ul>
+          <li>
+            <strong>Website and navigation information:</strong>
+            tab URLs, domain names, URL paths and query parameters,
+            navigation events, tab identifiers, and relationships between
+            newly opened tabs and their originating tabs.
+          </li>
+          <li>
+            <strong>Interaction information:</strong>
+            click timestamps, whether a click occurred on a link, and
+            mouse-button or modifier-key information such as middle-click,
+            Ctrl, Command, and Shift.
+          </li>
+          <li>
+            <strong>Download information:</strong>
+            download identifiers, download URLs, final download URLs,
+            and filenames, which may include a local file path supplied
+            by Chrome.
+          </li>
+          <li>
+            <strong>Preferences and statistics:</strong>
+            the protection on/off setting, allowed website domains,
+            appearance preferences, and aggregate counts of blocked
+            popups, redirects, and downloads.
+          </li>
+        </ul>
+        <p>
+          URLs and filenames may contain personal information. The extension
+          processes these values locally for its blocking functions and
+          does not transmit them to the developer.
+        </p>
+        <p>
+          The extension does not read downloaded file contents, record
+          passwords or form-field values, capture screenshots, or collect
+          payment details. It does not require an account.
+        </p>
+      </section>
+
+      <section>
+        <h2>3. How information is used</h2>
+        <p>Information is used to:</p>
+        <ul>
+          <li>Evaluate URLs and navigation activity against built-in blocking rules.</li>
+          <li>Close tabs identified by those rules as unwanted popups.</li>
+          <li>Attempt to return a tab to its previous page after certain redirects.</li>
+          <li>
+            Cancel downloads identified by the extension's rules and remove
+            their entries from Chrome's download history.
+          </li>
+          <li>Apply your allowed-site preferences and protection setting.</li>
+          <li>Display blocking counters and remember interface preferences.</li>
+        </ul>
+        <p>
+          Removing an entry from Chrome's download history does not itself
+          delete a file already saved on your device.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Local storage and retention</h2>
+        <p>
+          Settings, allowed website domains, appearance preferences, and
+          aggregate blocking counters are saved using Chrome's local
+          extension storage. They remain until you change or reset the
+          relevant information, remove the extension's stored data,
+          or uninstall the extension.
+        </p>
+        <p>
+          Recent click timing and navigation context, including a previous
+          page URL, are kept temporarily in the background service worker's
+          memory. This information is not saved as a persistent browsing
+          history. Entries are removed when the corresponding tab closes
+          or may be discarded when the service worker stops or its
+          in-memory limits are reached.
+        </p>
+        <p>
+          The extension does not maintain developer-hosted databases,
+          cloud backups, or a remote browsing-activity log.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Extension permissions</h2>
+        <ul>
+          <li>
+            <strong>Storage:</strong>
+            saves settings, website exceptions, appearance preferences,
+            and blocking counters locally.
+          </li>
+          <li>
+            <strong>Tabs:</strong>
+            accesses tab information needed to evaluate newly opened tabs,
+            display the current website, close blocked tabs, and return
+            to a previous page.
+          </li>
+          <li>
+            <strong>Web navigation:</strong>
+            observes navigation events to evaluate popup and redirect behavior.
+          </li>
+          <li>
+            <strong>Downloads:</strong>
+            evaluates download metadata, cancels downloads matching the
+            blocking rules, and removes the corresponding download-history entries.
+          </li>
+          <li>
+            <strong>Access to websites:</strong>
+            allows the extension to observe interaction timing on supported
+            webpages and apply its protection across websites.
+          </li>
+        </ul>
+        <p>
+          Chrome may describe these permissions using broad warnings.
+          The extension uses the information described in this policy
+          for its user-facing blocking functions and preferences.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Sharing, advertising, and analytics</h2>
+        <p>
+          The extension does not transmit the information it processes
+          to the developer, analytics providers, advertisers, or data brokers.
+          It does not sell, rent, or share browsing or download information.
+          It does not use this information for advertising, profiling,
+          creditworthiness, or lending decisions.
+        </p>
+        <p>
+          The extension does not include analytics SDKs, advertising SDKs,
+          tracking pixels, or a remote telemetry endpoint.
+          Its blocking rules are included in the extension package.
+        </p>
+        <p>
+          Websites you visit and services operated by Chrome or Google
+          have their own privacy practices. Visiting this policy page
+          also involves ordinary web requests to the website's hosting
+          infrastructure; this is separate from the extension's local processing.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Your controls</h2>
+        <ul>
+          <li>Turn blocking on or off using the extension's main switch.</li>
+          <li>Add or remove allowed websites through the interface and Settings panel.</li>
+          <li>Reset aggregate blocking statistics using the reset control.</li>
+          <li>Change appearance preferences in Settings.</li>
+          <li>
+            Disable or uninstall the extension through Chrome's extension
+            settings to stop its operation.
+          </li>
+        </ul>
+        <p>
+          Turning off blocking does not erase saved settings or counters.
+          Uninstalling the extension removes its local extension storage.
+          The developer cannot retrieve locally stored information from your device.
+        </p>
+      </section>
+
+      <section>
+        <h2>8. Changes to this policy</h2>
+        <p>
+          This policy will be updated when the extension's data practices
+          change. The date at the top identifies the latest revision.
+          Material changes involving additional data access or use will
+          be disclosed through the relevant extension or Chrome Web Store
+          notices and permission requests where applicable.
+        </p>
+      </section>
+
+      <section>
+        <h2>9. Contact</h2>
+        <p>
+          For privacy questions about
+          <strong>Smart Popup &amp; Redirect Blocker</strong>, contact:
+          <a href="mailto:contact@agetimetools.online">contact@agetimetools.online</a>.
+        </p>
+        <p>
+          Please identify the extension in your message.
+          Do not include passwords, payment information, or other
+          sensitive browsing details.
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="policy-container footer-inner">
+      <div>
+        <div class="footer-brand">Smart Popup &amp; Redirect Blocker</div>
+        <div class="muted">Chrome extension privacy policy.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/contact.html">Contact</a>
+        <a href="/privacypolicy.html" aria-current="page">Privacy Policy</a>
+      </div>
     </div>
-  </div>
-</footer>
-<script src="/js/main.min.js" defer></script>
-  <script src="/js/header.js"></script>
+  </footer>
 </body>
 </html>
